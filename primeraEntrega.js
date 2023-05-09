@@ -16,17 +16,17 @@ const calculadoraImp = (precio, porcentaje) => precio + (precio*(porcentaje/100)
 
 // Validacion de Impuestos
 function porcentajeImp (porciento) {
-    while (isNaN(porciento)) {
-        if (isNaN(porciento)) {
-            porciento = prompt("Por favor insertar un porcentaje valido.");
-        } else if (porciento < 0) {
+    while (isNaN(porciento) || (porciento < 0)) {
+        if (porciento < 0) {
             porciento = prompt("No se aceptan numeros negativos. Intenta nuevamente.");
-        }
+        } else if (isNaN(porciento)) {
+            porciento = prompt("Por favor insertar un porcentaje valido.");
+        }  
     }
     return porciento;
 }
 
-// Validacion de Presupuesto
+// Validacion de Presupuesto Minimo
 function validarPresupuesto (cantidad) {
     while ((isNaN(cantidad)) || (cantidad < paqueteBasico)) {
         if (isNaN(cantidad)) {
