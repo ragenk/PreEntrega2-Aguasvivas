@@ -1,13 +1,13 @@
-// Primera Pre-Entrega - Rafael Aguasvivas - Comision#43085
+// Segunda Pre-Entrega - Rafael Aguasvivas - Comision#43085
 // Simulador de Facturacion para agencia de diseño web
 
 // Variables Globales
-let nombre = prompt("Introduce tu nombre aqui");
-let paqueteBasico = 4000;
-let paquetePro = paqueteBasico*1.75;
-let paquetePremium = paquetePro*2.5;
-let presupuesto = validarPresupuesto(prompt("Introducir presupuesto"));
-let impuestos = porcentajeImp(prompt("Introducir porcentaje de impuestos"));
+const nombre = prompt("Introduce tu nombre aqui");
+const paqueteBasico = 4000;
+const paquetePro = paqueteBasico*1.75;
+const paquetePremium = paquetePro*2.5;
+const presupuesto = validarPresupuesto(prompt("Introducir presupuesto"));
+const impuestos = porcentajeImp(prompt("Introducir porcentaje de impuestos"));
 let precioParcial;
 
 // Funciones
