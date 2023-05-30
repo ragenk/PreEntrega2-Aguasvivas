@@ -1,38 +1,62 @@
 // Segunda Pre-Entrega - Rafael Aguasvivas - Comision#43085
 // Simulador de Facturacion para agencia de diseño web
 
+// Array
+// Metodo de busqueda y filtrado de array
+
+// Creacion de Clases y Metodos
+class Paquetes {
+    constructor (plan, precio) {
+        this.plan = plan;
+        this.precio = precio;
+    }
+
+    // Metodo para calcular los impuestos
+    // Tambien valida si es un numero positivo y valido
+    calcImp(porcentaje) {        
+        while (isNaN(porcentaje) || (porcentaje < 0)) {
+            if (porcentaje < 0) {
+                porcentaje = prompt("No se aceptan numeros negativos. Intenta nuevamente.");
+            } else if (isNaN(porcentaje)) {
+                porcentaje = prompt("Por favor insertar un porcentaje valido.");
+            }  
+        }
+        return this.precio + (this.precio*(porcentaje/100));
+    }
+}
+
+class Clientes {
+    constructor (nombre, apellido, presupuesto) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.presupuesto = presupuesto;
+    }
+}
+
+// Declaracion de Objetos
+// Objetos - Paquestes
+const planBasico = new Paquetes("basico", 4000);
+const planPro = new Paquetes("pro", 7000);
+const planPremium = new Paquetes("premium", 10000);
+// Objetos - Clientes
+
+
+// Array
+const clientes = [];
+
 // Variables Globales
 const nombre = prompt("Introduce tu nombre aqui");
-const paqueteBasico = 4000;
-const paquetePro = paqueteBasico*1.75;
-const paquetePremium = paquetePro*2.5;
 const presupuesto = validarPresupuesto(prompt("Introducir presupuesto"));
-const impuestos = porcentajeImp(prompt("Introducir porcentaje de impuestos"));
+const impuestos = prompt("Introducir porcentaje de impuestos");
 let precioParcial;
-
-// Funciones
-// Calculadora de Impuestos
-const calculadoraImp = (precio, porcentaje) => precio + (precio*(porcentaje/100));
-
-// Validacion de Impuestos
-function porcentajeImp (porciento) {
-    while (isNaN(porciento) || (porciento < 0)) {
-        if (porciento < 0) {
-            porciento = prompt("No se aceptan numeros negativos. Intenta nuevamente.");
-        } else if (isNaN(porciento)) {
-            porciento = prompt("Por favor insertar un porcentaje valido.");
-        }  
-    }
-    return porciento;
-}
 
 // Validacion de Presupuesto Minimo
 function validarPresupuesto (cantidad) {
-    while ((isNaN(cantidad)) || (cantidad < paqueteBasico)) {
+    while ((isNaN(cantidad)) || (cantidad < planBasico.precio)) {
         if (isNaN(cantidad)) {
             cantidad = prompt("Por favor insertar un numbero valido.");
-        } else if (cantidad < paqueteBasico) {
-            cantidad = prompt("Debes tener un minimo de " + paqueteBasico + " para contratar nuestros servicios.\nFavor aumentar el presupuesto.");
+        } else if (cantidad < planBasico.precio) {
+            cantidad = prompt("Debes tener un minimo de " + planBasico.precio + " para contratar nuestros servicios.\nFavor aumentar el presupuesto.");
         }
     }
     return cantidad;
@@ -44,16 +68,16 @@ console.log("===================================================================
 
 // Seleccion de paquete de acuerdo a presupuesto
 while (true) {
-    if (presupuesto >= paqueteBasico && presupuesto < paquetePro) {
-        precioParcial = paqueteBasico;
+    if (presupuesto >= planBasico.precio && presupuesto < planPro.precio) {
+        precioParcial = planBasico;
         console.log("Nuestro Paquete Basico es el que mejor se ajusta a tu presupuesto.");
         break;
-    } else if (presupuesto >= paquetePro && presupuesto < paquetePremium) {
-        precioParcial = paquetePro;
+    } else if (presupuesto >= planPro.precio && presupuesto < planPremium.precio) {
+        precioParcial = planPro;
         console.log("Nuestro Paquete Pro es el que mejor se ajusta a tu presupuesto.");
         break;
-    } else if (presupuesto >= paquetePremium) {
-        precioParcial = paquetePremium;
+    } else if (presupuesto >= planPremium.precio) {
+        precioParcial = planPremium;
         console.log("Nuestro Paquete Premium es el que mejor se ajusta a tu presupuesto.");
         break;
     }
@@ -62,5 +86,5 @@ while (true) {
 // Factura Final
 console.log("==================================================================================");
 console.log("Detalles de la factura:");
-console.log("Sub-Total: $", precioParcial);
-console.log("Total (Impuestos Incluidos): $" + calculadoraImp(precioParcial,impuestos));
+console.log("Sub-Total: $", precioParcial.precio);
+console.log("Total (Impuestos Incluidos): $" + precioParcial.calcImp(impuestos));
