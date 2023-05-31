@@ -64,12 +64,14 @@ const buscarCliente = arrClientes.find(cliente => cliente.nombre === clienteBusc
 if (buscarCliente) {
     buscarCliente.getDatos();
 } else {
+    alert("El cliente no se encuentra en la base de datos.");
     console.log("El cliente no se encuentra en la base de datos.");
 }
 
 // Filtrar clientes por rango de presupuesto usando filter()
 let minPresupuesto = parseInt(prompt("Filtrar clientes por rango de presupuesto minimo y maximo.\nPor favor introduzca el presupuesto minimo:"));
 let maxPresupuesto = parseInt(prompt("Introduzca el presupuesto maximo:"));
+
 if (minPresupuesto > maxPresupuesto) {
     while (minPresupuesto > maxPresupuesto) {
         minPresupuesto = parseInt(prompt("Presupuesto minimo no puede ser mayor que el presupuesto maximo.\nIntroduzca el presupuesto minimo nuevamente."))
