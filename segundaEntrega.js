@@ -34,7 +34,7 @@ class Clientes {
 }
 
 // Declaracion de Objetos
-// Objetos - Paquestes
+// Objetos - Paquetes
 const planBasico = new Paquetes("basico", 4000);
 const planPro = new Paquetes("pro", 7000);
 const planPremium = new Paquetes("premium", 10000);
